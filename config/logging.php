@@ -1,39 +1,14 @@
 <?php
 
+use Carbon\Carbon;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
+use TNM\Footprints\Utils\ConfigUtils;
 use Elastic\Elasticsearch\ClientBuilder;
 use Monolog\Handler\ElasticsearchHandler;
 use Monolog\Formatter\ElasticsearchFormatter;
 use Monolog\Processor\PsrLogMessageProcessor;
-
-function esChannelConfig(string $indexName): array
-{
-    $client = ClientBuilder::create()
-        ->setHosts([
-            env('ES_SCHEME') . '://' .
-            env('ES_USERNAME') . ':' .
-            env('ES_PASSWORD') . '@' .
-            env('ES_NODES') . ':' .
-            env('ES_PORT'),
-        ])
-        ->build();
-
-    return [
-        'driver' => 'monolog',
-        'level' => 'debug',
-        'handler' => ElasticsearchHandler::class,
-        'formatter' => ElasticsearchFormatter::class,
-        'formatter_with' => [
-            'index' => $indexName,
-            'type' => '_doc',
-        ],
-        'handler_with' => [
-            'client' => $client,
-        ],
-    ];
-}
 
 return [
 
@@ -151,16 +126,16 @@ return [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
         ],
-
+ 
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
-        'elastic' => esChannelConfig(indexName: 'payouts_laravel_logs'),
-        'footprints' => esChannelConfig(indexName: 'payouts_footprints'),
+        'elastic' => ConfigUtils::getEsChannelConfig(indexName: 'payouts_laravel_logs-' . Carbon::now()->format('Y.m.d')),
+        'footprints' => ConfigUtils::getEsChannelConfig(indexName: 'payouts_footprints-' . Carbon::now()->format('Y.m.d')),
         'footprint_stack' => [
             'driver' => 'stack',
-            'channels' => 'footprints,single',
-            'ignore_exceptions' => false,
+            'channels' => 'footprints',
+            'ignore_exceptions' => true,
         ]
     ],
 

@@ -6084,12 +6084,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/justicesandram/footprints.git",
-                "reference": "026dd34bbc4b9e662ed808fd764662f86f0aa1e8"
+                "reference": "11ddbf64f29f18a70e80330c417f5cc3ee7737f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justicesandram/footprints/zipball/026dd34bbc4b9e662ed808fd764662f86f0aa1e8",
-                "reference": "026dd34bbc4b9e662ed808fd764662f86f0aa1e8",
+                "url": "https://api.github.com/repos/justicesandram/footprints/zipball/11ddbf64f29f18a70e80330c417f5cc3ee7737f5",
+                "reference": "11ddbf64f29f18a70e80330c417f5cc3ee7737f5",
                 "shasum": ""
             },
             "require": {
@@ -6135,7 +6135,7 @@
             "support": {
                 "source": "https://github.com/justicesandram/footprints/tree/log-to-file-option"
             },
-            "time": "2025-04-08T08:51:09+00:00"
+            "time": "2025-04-08T09:39:08+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
