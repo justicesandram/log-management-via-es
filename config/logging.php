@@ -126,12 +126,12 @@ return [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
         ],
- 
+
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
-        'elastic' => ConfigUtils::getEsChannelConfig(indexName: 'payouts_laravel_logs-' . Carbon::now()->format('Y.m.d')),
-        'footprints' => ConfigUtils::getEsChannelConfig(indexName: 'payouts_footprints-' . Carbon::now()->format('Y.m.d')),
+        'elastic' => ConfigUtils::getEsChannelConfig(indexName: 'test_laravel_logs'),
+        'footprints' => ConfigUtils::getEsChannelConfig(indexName: 'test_footprints'),
         'footprint_stack' => [
             'driver' => 'stack',
             'channels' => 'footprints',
