@@ -130,8 +130,8 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
-        'elastic' => ConfigUtils::getEsChannelConfig(indexName: 'test_laravel_logs'),
-        'footprints' => ConfigUtils::getEsChannelConfig(indexName: 'test_footprints'),
+        'elastic' => ConfigUtils::getEsChannelConfig(indexName: 'application-logs'),
+        'footprints' => ConfigUtils::getEsChannelConfig(indexName: 'application-footprints'),
         'footprint_stack' => [
             'driver' => 'stack',
             'channels' => 'footprints',
